@@ -13,15 +13,13 @@ const outDir = 'dist';
 const entrypoint = 'src/index.ts';
 
 // Define your externals here
-const externals = new Set(['react']);
-
-const isExternal = src => externals.has(src);
+const externals = ['react'];
 
 export default defineConfig([
   {
     // Main compile step
     input: entrypoint,
-    external: isExternal,
+    external: externals,
     plugins: [
       postcss({
         modules: {
@@ -49,7 +47,7 @@ export default defineConfig([
   {
     // Bundle generated d.ts files into one
     input: '.temp/index.d.ts',
-    external: isExternal,
+    external: externals,
     plugins: [dts()],
     output: {
       file: `${outDir}/${name}.d.ts`,
