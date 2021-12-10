@@ -3,6 +3,7 @@ import { defineConfig } from 'rollup';
 import typescript from 'rollup-plugin-typescript2';
 import dts from 'rollup-plugin-dts';
 import postcss from 'rollup-plugin-postcss';
+import replace from '@rollup/plugin-replace';
 
 import pkg from './package.json';
 
@@ -48,7 +49,14 @@ export default defineConfig([
     // Bundle generated d.ts files into one
     input: '.temp/index.d.ts',
     external: externals,
-    plugins: [dts()],
+    plugins: [
+      replace({
+        "import './styles.module.scss'": '',
+        delimiters: ['', ''],
+        preventAssignment: true,
+      }),
+      dts()
+    ],
     output: {
       file: `${outDir}/${name}.d.ts`,
       format: 'es'
