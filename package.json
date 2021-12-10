@@ -1,0 +1,28 @@
+{
+  "name": "ui-lib",
+  "description": "A template for a UI library with Typescript, Rollup, SCSS Modules & more",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "prebuild": "rimraf dist && rimraf .temp",
+    "build": "rollup -c rollup.config.js",
+    "dev": "yarn build -w",
+    "postbuild": "rimraf .temp"
+  },
+  "devDependencies": {
+    "esbuild": "^0.14.2",
+    "postcss": "^8.4.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.61.0",
+    "rollup-plugin-dts": "^4.0.1",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-typescript2": "^0.31.1",
+    "sass": "^1.44.0",
+    "typescript": "^4.5.3"
+  },
+  "peerDependencies": {
+    "react": "^16.14.0 || >=17"
+  }
+}
